@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyMate AI - Student Productivity and Study Planner">
+  <title>StudyMate AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- LOGIN / REGISTER -->
+  <section id="authPage" class="auth-page">
+    <div class="auth-bg-circle circle-1"></div>
+    <div class="auth-bg-circle circle-2"></div>
+
+    <div class="auth-wrapper">
+      <div class="brand auth-brand">
+        <span class="brand-icon">✦</span>
+        <span>StudyMate <b>AI</b></span>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-showcase">
+          <div class="showcase-orb">✦</div>
+          <span class="float-card float-one">📚 Smart Study Plans</span>
+          <span class="float-card float-two">🎯 Academic Goals</span>
+          <span class="float-card float-three">🔥 7 Day Streak</span>
+
+          <div class="showcase-content">
+            <small>YOUR ACADEMIC CO-PILOT</small>
+            <h1>Study smarter.<br><span>Achieve more.</span></h1>
+            <p>One intelligent workspace for deadlines, attendance, study plans and academic progress.</p>
+            <div>✓ Personalized study planning</div>
+            <div>✓ Attendance shortage alerts</div>
+            <div>✓ AI-powered recommendations</div>
+          </div>
+        </div>
+
+        <div class="auth-form-area">
+          <div id="loginForm">
+            <div class="auth-heading">
+              <h2>Welcome back 👋</h2>
+              <p>Sign in to continue to your academic dashboard.</p>
+            </div>
+
+            <form onsubmit="login(event)">
+              <label>Email address
+                <div class="input-box"><span>✉</span><input id="loginEmail" type="email" placeholder="you@example.com" required></div>
+              </label>
+
+              <label>Password
+                <div class="input-box"><span>🔒</span><input id="loginPassword" type="password" placeholder="Enter password" required><button type="button" class="eye-btn" onclick="togglePassword('loginPassword')">◉</button></div>
+              </label>
+
+              <div class="form-options">
+                <label class="remember"><input type="checkbox"> Remember me</label>
+                <button type="button" class="link-button">Forgot password?</button>
+              </div>
+
+              <button class="primary-btn auth-btn">Sign In <span>→</span></button>
+            </form>
+
+            <div class="or"><span>or continue with</span></div>
+            <button class="google-btn"><b>G</b> Continue with Google</button>
+
+            <p class="switch-text">Don't have an account?
+              <button class="link-button" onclick="showRegister()">Create account</button>
+            </p>
+          </div>
+
+          <div id="registerForm" class="hidden">
+            <div class="auth-heading">
+              <h2>Create your account</h2>
+              <p>Start building your personalized academic plan.</p>
+            </div>
+
+            <form onsubmit="register(event)">
+              <label>Full name
+                <div class="input-box"><span>👤</span><input id="registerName" type="text" placeholder="Enter your name" required></div>
+              </label>
+              <label>Email address
+                <div class="input-box"><span>✉</span><input type="email" placeholder="you@example.com" required></div>
+              </label>
+              <label>Password
+                <div class="input-box"><span>🔒</span><input id="registerPassword" type="password" placeholder="Create password" required><button type="button" class="eye-btn" onclick="togglePassword('registerPassword')">◉</button></div>
+              </label>
+              <label>Confirm password
+                <div class="input-box"><span>🔒</span><input id="confirmPassword" type="password" placeholder="Confirm password" required></div>
+              </label>
+              <button class="primary-btn auth-btn">Create Account <span>→</span></button>
+            </form>
+
+            <p class="switch-text">Already have an account?
+              <button class="link-button" onclick="showLogin()">Sign in</button>
+            </p>
+          </div>
+
+          <p class="demo-note">Frontend demo · No backend required</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="appPage" class="app hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">✦</span>
+        <span>StudyMate <b>AI</b></span>
+      </div>
+
+      <div class="nav-label">WORKSPACE</div>
+      <nav>
+        <button class="nav-item active" data-page="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-page="planner"><span>✦</span> Study Planner</button>
+        <button class="nav-item" data-page="tasks"><span>✓</span> Tasks</button>
+        <button class="nav-item" data-page="attendance"><span>▣</span> Attendance</button>
+        <button class="nav-item" data-page="calendar"><span>□</span> Calendar</button>
+        <button class="nav-item" data-page="progress"><span>▥</span> Progress</button>
+        <button class="nav-item" data-page="profile"><span>◯</span> Profile</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="streak-card">
+          <b>🔥 7 Day Streak</b>
+          <span>Keep going!</span>
+        </div>
+        <button id="themeButton" class="nav-item"><span>☾</span> Dark Mode</button>
+        <button id="logoutButton" class="nav-item"><span>↪</span> Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menuButton" class="mobile-menu">☰</button>
+        <div class="search-box"><span>⌕</span><input placeholder="Search tasks, subjects..."></div>
+        <div class="top-actions"><button>🔔</button><span class="notification-dot"></span><div class="avatar">A</div></div>
+      </header>
+
+      <div id="pageContent" class="content"></div>
+    </main>
+  </section>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-header"><h2 id="modalTitle">Add Task</h2><button onclick="closeModal()">×</button></div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
